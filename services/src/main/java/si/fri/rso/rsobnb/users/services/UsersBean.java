@@ -9,7 +9,7 @@ import javax.persistence.EntityManager;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
-import si.fri.rso.rsobnb.users.*;
+import si.fri.rso.rsobnb.users.User;
 
 @ApplicationScoped
 public class UsersBean {
@@ -17,21 +17,21 @@ public class UsersBean {
     @Inject
     private EntityManager em;
 
-    public List<Order> getOrders(UriInfo uriInfo) {
+    public List<User> getOrders(UriInfo uriInfo) {
 
         QueryParameters queryParameters = QueryParameters.query(uriInfo.getRequestUri().getQuery())
                 .defaultOffset(0)
                 .build();
 
-        return JPAUtils.queryEntities(em, Order.class, queryParameters);
+        return JPAUtils.queryEntities(em, User.class, queryParameters);
 
     }
 
-    public Order getOrder(String orderId) {
+    public User getOrder(String orderId) {
 
 
 
-        Order order = em.find(Order.class, orderId);
+        User order = em.find(User.class, orderId);
 
         if (order == null) {
             throw new NotFoundException();
@@ -40,22 +40,22 @@ public class UsersBean {
         return order;
     }
 
-    public Order createOrder(Order order) {
+    public User createOrder(User user) {
 
         try {
             beginTx();
-            em.persist(order);
+            em.persist(user);
             commitTx();
         } catch (Exception e) {
             rollbackTx();
         }
 
-        return order;
+        return user;
     }
 
-    public Order putOrder(String orderId, Order order) {
+    public User putOrder(String orderId, User order) {
 
-        Order c = em.find(Order.class, orderId);
+        User c = em.find(User.class, orderId);
 
         if (c == null) {
             return null;
@@ -75,7 +75,7 @@ public class UsersBean {
 
     public boolean deleteOrder(String orderId) {
 
-        Order order = em.find(Order.class, orderId);
+        User order = em.find(User.class, orderId);
 
         if (order != null) {
             try {

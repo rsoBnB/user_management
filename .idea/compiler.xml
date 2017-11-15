@@ -12,7 +12,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="api" target="1.8" />
+      <module name="api" target="1.5" />
       <module name="models" target="1.8" />
       <module name="services" target="1.8" />
       <module name="users" target="1.8" />
