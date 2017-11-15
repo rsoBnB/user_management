@@ -28,8 +28,13 @@ public class User {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
+
+
 
     //@Transient
     //private List<Order> orders;
