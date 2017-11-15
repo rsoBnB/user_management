@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: si.fri.rso.rsobnb:users-services:unknown">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/si/fri/rso/rsobnb/users-services/unknown/users-services-unknown.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/si/fri/rso/rsobnb/users-services/unknown/users-services-unknown-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/si/fri/rso/rsobnb/users-services/unknown/users-services-unknown-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
