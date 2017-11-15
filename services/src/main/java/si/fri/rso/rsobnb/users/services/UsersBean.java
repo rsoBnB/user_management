@@ -17,7 +17,7 @@ public class UsersBean {
     @Inject
     private EntityManager em;
 
-    public List<User> getOrders(UriInfo uriInfo) {
+    public List<User> getUsers(UriInfo uriInfo) {
 
         QueryParameters queryParameters = QueryParameters.query(uriInfo.getRequestUri().getQuery())
                 .defaultOffset(0)
@@ -27,20 +27,26 @@ public class UsersBean {
 
     }
 
-    public User getOrder(String orderId) {
+    public List<User> getUsersFilter(UriInfo uriInfo) {
+        QueryParameters queryParameters = QueryParameters.query(uriInfo.getRequestUri().getQuery()).defaultOffset(0).build();
+        return JPAUtils.queryEntities(em, User.class, queryParameters);
+    }
+
+    public User getUser(String userId) {
 
 
+        User user = em.find(User.class, userId);
 
-        User order = em.find(User.class, orderId);
-
-        if (order == null) {
+        if (user == null) {
             throw new NotFoundException();
         }
 
-        return order;
+        return user;
     }
 
-    public User createOrder(User user) {
+
+
+    public User createdUser(User user) {
 
         try {
             beginTx();
@@ -53,34 +59,34 @@ public class UsersBean {
         return user;
     }
 
-    public User putOrder(String orderId, User order) {
+    public User putUser(String userId, User user) {
 
-        User c = em.find(User.class, orderId);
+        User u = em.find(User.class, userId);
 
-        if (c == null) {
+        if (u == null) {
             return null;
         }
 
         try {
             beginTx();
-            order.setId(c.getId());
-            order = em.merge(order);
+            user.setId(u.getId());
+            user = em.merge(user);
             commitTx();
         } catch (Exception e) {
             rollbackTx();
         }
 
-        return order;
+        return user;
     }
 
-    public boolean deleteOrder(String orderId) {
+    public boolean deleteUser(String userId) {
 
-        User order = em.find(User.class, orderId);
+        User user = em.find(User.class, userId);
 
-        if (order != null) {
+        if (user != null) {
             try {
                 beginTx();
-                em.remove(order);
+                em.remove(user);
                 commitTx();
             } catch (Exception e) {
                 rollbackTx();
