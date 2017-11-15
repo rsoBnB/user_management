@@ -1,1 +1,6 @@
-/Users/greg/rsobnb/users/api/src/main/java/si/fri/rso/rsobnb/users/api/UsersApplication.java
+/Users/jernejkozelj/FAKS/2.letnik/1.semester/RSO/users/api/src/main/java/si/fri/rso/rsobnb/users/api/producers/JacksonProducer.java
+/Users/jernejkozelj/FAKS/2.letnik/1.semester/RSO/users/api/src/main/java/si/fri/rso/rsobnb/users/api/interceptors/LogContextInterceptor.java
+/Users/jernejkozelj/FAKS/2.letnik/1.semester/RSO/users/api/src/main/java/si/fri/rso/rsobnb/users/api/dtos/ApiError.java
+/Users/jernejkozelj/FAKS/2.letnik/1.semester/RSO/users/api/src/main/java/si/fri/rso/rsobnb/users/api/UsersApplication.java
+/Users/jernejkozelj/FAKS/2.letnik/1.semester/RSO/users/api/src/main/java/si/fri/rso/rsobnb/users/api/exceptionmappers/NotFoundExceptionMapper.java
+/Users/jernejkozelj/FAKS/2.letnik/1.semester/RSO/users/api/src/main/java/si/fri/rso/rsobnb/users/api/resources/UsersResource.java

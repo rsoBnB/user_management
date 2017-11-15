@@ -1,2 +1,7 @@
 si/fri/rso/rsobnb/users/api/UsersApplication.class
+si/fri/rso/rsobnb/users/api/resources/UsersResource.class
+si/fri/rso/rsobnb/users/api/interceptors/LogContextInterceptor.class
+si/fri/rso/rsobnb/users/api/producers/JacksonProducer.class
+si/fri/rso/rsobnb/users/api/dtos/ApiError.class
+si/fri/rso/rsobnb/users/api/exceptionmappers/NotFoundExceptionMapper.class
 META-INF/services/javax.ws.rs.core.Application
