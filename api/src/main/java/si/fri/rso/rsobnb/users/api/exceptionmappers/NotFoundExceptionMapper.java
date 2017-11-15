@@ -1,7 +1,7 @@
 package si.fri.rso.rsobnb.users.api.exceptionmappers;
 
 
-import si.fri.rso.samples.customers.api.v1.dtos.ApiError;
+import si.fri.rso.rsobnb.users.api.dtos.ApiError;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.NotFoundException;
