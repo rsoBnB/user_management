@@ -10,7 +10,7 @@ import java.util.List;
 @Entity(name = "users")
 @NamedQueries(value =
         {
-                @NamedQuery(name = "Users.getAll", query = "SELECT c FROM user c")
+                @NamedQuery(name = "Users.getAll", query = "SELECT u FROM users u")
         })
 @UuidGenerator(name = "idGenerator")
 public class User {

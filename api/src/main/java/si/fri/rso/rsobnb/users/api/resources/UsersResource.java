@@ -48,7 +48,7 @@ public class UsersResource {
 
     @GET
     @Path("/{userId}")
-    public Response getUSer(@PathParam("userId") String userId) {
+    public Response getUser(@PathParam("userId") String userId) {
 
         User user = userBean.getUser(userId);
 
