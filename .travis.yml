@@ -14,7 +14,7 @@ cache:
   - $HOME/.m2
 
 env:
-  - DOCKER_IMAGE=users-api:1.00
+  - DOCKER_IMAGE=ggrex/rsobnb-users:0.1
 
 script:
   - mvn clean package -U
