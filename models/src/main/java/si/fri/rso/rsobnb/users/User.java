@@ -4,6 +4,7 @@ import java.util.UUID;
 import org.eclipse.persistence.annotations.UuidGenerator;
 
 import javax.persistence.*;
+import javax.persistence.criteria.Order;
 import java.util.Date;
 import java.util.List;
 
@@ -36,8 +37,8 @@ public class User {
 
 
 
-    //@Transient
-    //private List<Order> orders;
+    @Transient
+    private List<RealEstate> realEstates;
 
     public String getId() {
         return id;
@@ -79,11 +80,11 @@ public class User {
         this.dateOfBirth = dateOfBirth;
     }
 
-    //public List<Order> getOrders() {
-    //    return orders;
-    //}
+    public List<RealEstate> getRealEstates() {
+        return realEstates;
+    }
 
-    //public void setOrders(List<Order> orders) {
-
-    //this.orders = orders;
+    public void setRealEstates(List<RealEstate> realEstates) {
+        this.realEstates = realEstates;
+    }
 }

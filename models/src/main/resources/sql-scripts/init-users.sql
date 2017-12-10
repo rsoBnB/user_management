@@ -1,0 +1,3 @@
+INSERT INTO users (id, first_name, last_name, address, password, date_of_birth) VALUES (1, 'Janez', 'Novak', 'Ljubljana', '1234', TIMESTAMP '2006-01-01 15:36:38');
+INSERT INTO users (id, first_name, last_name, address, password, date_of_birth) VALUES (2, 'Goran', 'Dragich', 'Ljubljana', '1234', TIMESTAMP '2006-01-01 15:36:38');
+INSERT INTO users (id, first_name, last_name, address, password, date_of_birth) VALUES (3, 'Sani', 'Bech', 'Ljubljana', '1234', TIMESTAMP '2006-01-01 15:36:38');
