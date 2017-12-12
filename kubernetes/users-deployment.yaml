@@ -10,7 +10,7 @@ spec:
         app: users
     spec:
       containers:
-      - image: ggrex/rsobnb-users:latest
+      - image: ggrex/rsobnb-users:0.2
         name: users
         env:
           - name: KUMULUZEE_DISCOVERY_CLUSTER
@@ -29,3 +29,4 @@ spec:
         - containerPort: 8080
           name: server
           protocol: TCP
+      imagePullPolicy: Always

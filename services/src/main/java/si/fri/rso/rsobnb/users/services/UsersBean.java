@@ -7,6 +7,8 @@ import com.kumuluz.ee.rest.utils.JPAUtils;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.persistence.EntityManager;
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
@@ -167,6 +169,30 @@ public class UsersBean {
 
     public List<RealEstate> getRealEstatesFallback(String userId) {
         return new ArrayList<RealEstate>();
+    }
+
+    public String getInfo() {
+        JsonObject object = Json.createObjectBuilder()
+                .add("clani", Json.createArrayBuilder()
+                    .add("gs5076")
+                    .add("jk0108"))
+                .add("opis_projekta", "Nas projekt implementira aplikacijo za oddajo nepremicnin.")
+                .add("mikrostoritve", Json.createArrayBuilder()
+                    .add("http://168.1.149.41:30626/v1/users")
+                    .add("http://168.1.149.41:32622/v1/real_estates"))
+                .add("github", Json.createArrayBuilder()
+                    .add("https://github.com/rsoBnB/users")
+                    .add("https://github.com/rsoBnB/real_estates"))
+                .add("travis", Json.createArrayBuilder()
+                    .add("https://travis-ci.org/rsoBnB/users")
+                    .add("https://travis-ci.org/rsoBnB/real_estates"))
+                .add("dockerhub", Json.createArrayBuilder()
+                    .add("https://hub.docker.com/r/ggrex/rsobnb-users/")
+                    .add("https://hub.docker.com/r/ggrex/rsobnb-real_estates/"))
+                .build();
+
+
+        return object.toString();
     }
 
     private void beginTx() {

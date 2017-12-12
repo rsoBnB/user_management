@@ -6,6 +6,7 @@ import si.fri.rso.rsobnb.users.services.UsersBean;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.json.JsonObject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -33,6 +34,14 @@ public class UsersResource {
         List<User> users = userBean.getUsers(uriInfo);
 
         return Response.ok(users).build();
+    }
+
+    @GET
+    @Path("/info")
+    public Response getInfo() {
+        String response = userBean.getInfo();
+
+        return Response.ok(response).build();
     }
 
     @GET
