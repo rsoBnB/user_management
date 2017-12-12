@@ -45,7 +45,7 @@ public class UsersBean {
     private EntityManager em;
 
     @Inject
-    @DiscoverService(value = "real_estates", environment = "dev", version = "1.0.0")
+    @DiscoverService("realestates")
     private Optional<String> baseUrl;
 
     @PostConstruct
@@ -54,6 +54,8 @@ public class UsersBean {
     }
 
     public List<User> getUsers(UriInfo uriInfo) {
+
+        System.out.println("Getting users");
 
         QueryParameters queryParameters = QueryParameters.query(uriInfo.getRequestUri().getQuery())
                 .defaultOffset(0)
