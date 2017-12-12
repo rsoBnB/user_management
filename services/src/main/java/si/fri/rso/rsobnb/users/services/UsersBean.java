@@ -45,7 +45,7 @@ public class UsersBean {
     private EntityManager em;
 
     @Inject
-    @DiscoverService("real_estates")
+    @DiscoverService(value = "real_estates", environment = "dev", version = "1.0.0")
     private Optional<String> baseUrl;
 
     @PostConstruct
@@ -139,6 +139,8 @@ public class UsersBean {
     }
 
     public List<RealEstate> getRealEstates(String userId) {
+
+        System.out.println("Base url: "+baseUrl);
 
         if (baseUrl.isPresent()) {
             System.out.println("Base url: "+baseUrl);
