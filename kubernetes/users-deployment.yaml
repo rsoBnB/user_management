@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: users-deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: users
+    spec:
+      containers:
+      - image: ggrex/rsobnb-users:0.1
+        name: users
+        env:
+          - name: KUMULUZEE_DISCOVERY_CLUSTER
+            value: bluemix
+          - name: KUMULUZEE_DISCOVERY_ETCD_HOSTS
+            value: http://etcd:2379
+          - name: KUMULUZEE_CONFIG_ETCD_HOSTS
+            value: http://etcd:2379
+          - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
+            value: jdbc:postgresql://postgres-users:5432/users
+          - name: KUMULUZEE_DATASOURCES0_USERNAME
+            value: dbuser
+          - name: KUMULUZEE_DATASOURCES0_PASSWORD
+            value: postgres
+        ports:
+        - containerPort: 8080
+          name: server
+          protocol: TCP

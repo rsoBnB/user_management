@@ -44,9 +44,9 @@ public class UsersBean {
     @Inject
     private EntityManager em;
 
-    //@Inject
-    //@DiscoverService("realestates")
-    //private Optional<String> estatesUrl = "http://localhost:8081";
+    @Inject
+    @DiscoverService("real_estates")
+    private Optional<String> baseUrl;
 
     @PostConstruct
     private void init() {
@@ -140,23 +140,21 @@ public class UsersBean {
 
     public List<RealEstate> getRealEstates(String userId) {
 
-        //if(estatesUrl.isPresent()) {
+        if (baseUrl.isPresent()) {
+            System.out.println("Base url: "+baseUrl);
+
             try {
-                System.out.println("try: "+userId);
-                List<RealEstate> estates = httpClient
-                        .target("http://172.17.0.1:8081/v1/real_estates?where=userId:EQ:" + userId)
+                return httpClient
+                        .target(baseUrl.get() + "/v1/real_estates?where=userId:EQ:" + userId)
                         .request().get(new GenericType<List<RealEstate>>() {
                         });
-                System.out.println(Arrays.toString(estates.toArray()));
-
-                return estates;
             } catch (WebApplicationException | ProcessingException e) {
-                System.out.println(e);
+                System.out.println("Error: "+e);
                 throw new InternalServerErrorException(e);
             }
-        //}
+        }
 
-        //return new ArrayList<>();
+        return new ArrayList<>();
     }
 
     public List<RealEstate> getRealEstatesFallback(String userId) {

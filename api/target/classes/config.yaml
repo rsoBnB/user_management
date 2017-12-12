@@ -13,3 +13,13 @@ kumuluzee:
       username: postgres
       password: postgres
       max-pool-size: 20
+  config:
+    etcd:
+      hosts: http://172.17.0.1:2379
+  discovery:
+    etcd:
+      hosts: http://172.17.0.1:2379
+rest-properties:
+  external-services:
+    realestate-service:
+      enabled: true
