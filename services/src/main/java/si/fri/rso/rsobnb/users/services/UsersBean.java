@@ -45,8 +45,12 @@ public class UsersBean {
     private EntityManager em;
 
     @Inject
-    @DiscoverService("realestates")
+    @DiscoverService("real_estates")
     private Optional<String> baseUrl;
+
+    @Inject
+    @DiscoverService("users")
+    private Optional<String> usersUrl;
 
     @PostConstruct
     private void init() {
@@ -56,6 +60,7 @@ public class UsersBean {
     public List<User> getUsers(UriInfo uriInfo) {
 
         System.out.println("Getting users");
+        System.out.println("Users url: "+usersUrl);
 
         QueryParameters queryParameters = QueryParameters.query(uriInfo.getRequestUri().getQuery())
                 .defaultOffset(0)
@@ -74,9 +79,6 @@ public class UsersBean {
 
         User user = em.find(User.class, userId);
 
-        System.out.println("Testing");
-        System.out.println("Base url: " + baseUrl);
-        System.out.println("User:"+ user.getFirstName());
         if (user == null) {
             throw new NotFoundException();
         }
