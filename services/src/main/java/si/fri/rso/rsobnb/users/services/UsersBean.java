@@ -72,6 +72,8 @@ public class UsersBean {
 
         User user = em.find(User.class, userId);
 
+        System.out.println("Testing");
+        System.out.println("Base url: " + baseUrl);
         System.out.println("User:"+ user.getFirstName());
         if (user == null) {
             throw new NotFoundException();
