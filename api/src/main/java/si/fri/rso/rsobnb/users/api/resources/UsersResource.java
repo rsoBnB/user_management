@@ -57,6 +57,7 @@ public class UsersResource {
 
     @GET
     @Path("/{userId}")
+    @Log
     public Response getUser(@PathParam("userId") String userId) {
 
         User user = userBean.getUser(userId);
@@ -69,6 +70,7 @@ public class UsersResource {
     }
 
     @POST
+    @Log
     public Response createUser(User user) {
 
         if ((user.getFirstName() == null || user.getFirstName().isEmpty()) || (user.getLastName() == null
