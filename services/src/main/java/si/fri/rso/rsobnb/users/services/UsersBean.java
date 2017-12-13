@@ -34,7 +34,7 @@ import si.fri.rso.rsobnb.users.services.config.RestProperties;
 @ApplicationScoped
 public class UsersBean {
 
-    private Logger log = LogManager.getLogger(CustomersBean.class.getName());
+    private Logger log = LogManager.getLogger(UsersBean.class.getName());
 
     private Client httpClient;
 
