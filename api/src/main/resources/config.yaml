@@ -19,6 +19,10 @@ kumuluzee:
   discovery:
     etcd:
       hosts: http://172.17.0.1:2379
+  metrics:
+      web-instrumentation:
+        - name: users-endpoint
+          url-pattern: /v1/users/*
 logs:
     config-file: '<?xml version="1.0" encoding="UTF-8"?>
                   <Configuration name="users">

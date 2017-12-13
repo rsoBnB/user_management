@@ -4,6 +4,7 @@ import com.kumuluz.ee.logs.cdi.Log;
 import si.fri.rso.rsobnb.users.User;
 import si.fri.rso.rsobnb.users.services.UsersBean;
 
+import org.eclipse.microprofile.metrics.annotation.Metered;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.json.JsonObject;
@@ -29,6 +30,7 @@ public class UsersResource {
     protected UriInfo uriInfo;
 
     @GET
+    @Metered
     public Response getUsers() {
 
         List<User> users = userBean.getUsers(uriInfo);
