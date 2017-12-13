@@ -3,6 +3,8 @@ package si.fri.rso.rsobnb.users.services;
 import com.kumuluz.ee.discovery.annotations.DiscoverService;
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
+import com.kumuluz.ee.logs.LogManager;
+import com.kumuluz.ee.logs.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -31,6 +33,8 @@ import si.fri.rso.rsobnb.users.services.config.RestProperties;
 
 @ApplicationScoped
 public class UsersBean {
+
+    private Logger log = LogManager.getLogger(CustomersBean.class.getName());
 
     private Client httpClient;
 
@@ -159,6 +163,7 @@ public class UsersBean {
                         .request().get(new GenericType<List<RealEstate>>() {
                         });
             } catch (WebApplicationException | ProcessingException e) {
+                log.error(e);
                 System.out.println("Error: "+e);
                 throw new InternalServerErrorException(e);
             }
