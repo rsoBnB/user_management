@@ -26,6 +26,7 @@
     <kumuluzee-config.version>1.0.0</kumuluzee-config.version>
     <kumuluzee-discovery.version>1.1.0-SNAPSHOT</kumuluzee-discovery.version>
     <kumuluzee-fault-tolerance.version>1.0.0-SNAPSHOT</kumuluzee-fault-tolerance.version>
+    <kumuluzee-health.version>1.0.0-SNAPSHOT</kumuluzee-health.version>
 
     <postgresql.version>42.1.4</postgresql.version>
   </properties>
