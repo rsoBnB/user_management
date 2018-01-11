@@ -19,10 +19,6 @@ kumuluzee:
   discovery:
     etcd:
       hosts: http://172.17.0.1:2379
-  health:
-      checks:
-        data-source-health-check:
-          jndi-name: jdbc/UsersDS
   metrics:
       web-instrumentation:
         - name: users-endpoint
