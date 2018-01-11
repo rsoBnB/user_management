@@ -19,10 +19,15 @@ kumuluzee:
   discovery:
     etcd:
       hosts: http://172.17.0.1:2379
-  health:
+  kumuluzee:
+    health:
       checks:
         data-source-health-check:
-          jndi-name: jdbc/UsersDS
+          connection-url: jdbc:postgresql://172.17.0.1:33333/users
+          username: dbuser
+          password: postgres
+        disk-space-health-check:
+          threshold: 100000000
   metrics:
       web-instrumentation:
         - name: users-endpoint
@@ -50,3 +55,7 @@ logs:
 
 rest-properties:
   healthy: true
+  external-services:
+    realestate-service:
+      enabled: true
+      healthy: true

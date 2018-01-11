@@ -8,6 +8,7 @@ import com.kumuluz.ee.logs.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -24,13 +25,16 @@ import javax.ws.rs.core.UriInfo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import org.eclipse.microprofile.faulttolerance.CircuitBreaker;
+import org.eclipse.microprofile.faulttolerance.Fallback;
+import org.eclipse.microprofile.faulttolerance.Timeout;
 
 import si.fri.rso.rsobnb.users.RealEstate;
 import si.fri.rso.rsobnb.users.User;
 import si.fri.rso.rsobnb.users.services.config.RestProperties;
 
 
-@ApplicationScoped
+@RequestScoped
 public class UsersBean {
 
     private Logger log = LogManager.getLogger(UsersBean.class.getName());
@@ -53,9 +57,6 @@ public class UsersBean {
     @DiscoverService("real_estates")
     private Optional<String> baseUrl;
 
-    @Inject
-    @DiscoverService("users")
-    private Optional<String> usersUrl;
 
     @PostConstruct
     private void init() {
@@ -64,8 +65,7 @@ public class UsersBean {
 
     public List<User> getUsers(UriInfo uriInfo) {
 
-        System.out.println("Getting users");
-        System.out.println("Users url: "+usersUrl);
+        System.out.println("RealEstate enabled: "+restProperties.isRealEstateServiceEnabled());
 
         QueryParameters queryParameters = QueryParameters.query(uriInfo.getRequestUri().getQuery())
                 .defaultOffset(0)
@@ -149,6 +149,9 @@ public class UsersBean {
         return true;
     }
 
+    @CircuitBreaker(requestVolumeThreshold = 2)
+    @Fallback(fallbackMethod = "getRealEstatesFallback")
+    @Timeout
     public List<RealEstate> getRealEstates(String userId) {
 
         System.out.println("Base url: "+baseUrl);
@@ -172,7 +175,19 @@ public class UsersBean {
     }
 
     public List<RealEstate> getRealEstatesFallback(String userId) {
-        return new ArrayList<RealEstate>();
+        System.out.println("Fallback called");
+
+        List<RealEstate> realEstates = new ArrayList<>();
+
+        RealEstate realEstate= new RealEstate();
+
+        realEstate.setName("N/A");
+        realEstate.setId("N/A");
+        realEstate.setLocation("N/A");
+
+        realEstates.add(realEstate);
+
+        return realEstates;
     }
 
     public String getInfo() {

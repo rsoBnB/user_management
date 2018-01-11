@@ -9,14 +9,24 @@ import javax.enterprise.context.ApplicationScoped;
 public class RestProperties {
 
     @ConfigValue(value = "external-services.realestate-service.enabled", watch = true)
-
-    private boolean healthy;
+    private boolean realEstateServiceEnabled;
+    @ConfigValue(value = "external-services.realestate-service.healthy", watch = true)
+    private boolean isHealthy;
 
     public boolean isHealthy() {
-        return healthy;
+        return isHealthy;
     }
 
-    public void setHealthy(boolean healthy) {
-        this.healthy = healthy;
+    public void setHealthy(boolean isHealthy) {
+        this.isHealthy = isHealthy;
+    }
+
+
+    public boolean isRealEstateServiceEnabled() {
+        return realEstateServiceEnabled;
+    }
+
+    public void setRealEstateServiceEnabled(boolean realEstateServiceEnabled) {
+        this.realEstateServiceEnabled = realEstateServiceEnabled;
     }
 }

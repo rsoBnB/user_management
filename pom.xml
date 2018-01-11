@@ -23,11 +23,27 @@
     <kumuluzee-metrics.version>1.0.0-SNAPSHOT</kumuluzee-metrics.version>
     <kumuluzee.version>2.4.1</kumuluzee.version>
     <kumuluzee-rest.version>1.1.0</kumuluzee-rest.version>
+    <kumuluzee-config.version>1.0.0</kumuluzee-config.version>
     <kumuluzee-discovery.version>1.1.0-SNAPSHOT</kumuluzee-discovery.version>
+    <kumuluzee-fault-tolerance.version>1.0.0-SNAPSHOT</kumuluzee-fault-tolerance.version>
     <kumuluzee-health.version>1.0.0-SNAPSHOT</kumuluzee-health.version>
 
     <postgresql.version>42.1.4</postgresql.version>
   </properties>
+
+  <repositories>
+    <repository>
+      <id>sonatype-snapshots</id>
+      <name>Sonatype Snapshots</name>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
   <dependencyManagement>
     <dependencies>
@@ -78,6 +94,11 @@
         <groupId>org.postgresql</groupId>
         <artifactId>postgresql</artifactId>
         <version>${postgresql.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.kumuluz.ee.fault.tolerance</groupId>
+        <artifactId>kumuluzee-fault-tolerance-hystrix</artifactId>
+        <version>${kumuluzee-fault-tolerance.version}</version>
       </dependency>
       <dependency>
         <groupId>si.fri.rso.rsobnb</groupId>
