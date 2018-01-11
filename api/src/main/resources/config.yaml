@@ -19,6 +19,15 @@ kumuluzee:
   discovery:
     etcd:
       hosts: http://172.17.0.1:2379
+  kumuluzee:
+    health:
+      checks:
+        data-source-health-check:
+          connection-url: jdbc:postgresql://172.17.0.1:33333/users
+          username: dbuser
+          password: postgres
+        disk-space-health-check:
+          threshold: 100000000
   metrics:
       web-instrumentation:
         - name: users-endpoint
@@ -30,7 +39,7 @@ logs:
                           <Console name="console" target="SYSTEM_OUT">
                               <PatternLayout pattern="%d %p %marker %m %X %ex %n"/>
                           </Console>
-                          <Socket name="logstash" host="42edda9a-bb93-4e5f-87c4-e3607f968174-ls.logit.io" port="23046"
+                          <Socket name="logstash" host="8452d852-8949-439a-b182-c31a0dd3f805-ls.logit.io" port="17860"
                                                                                          protocol="tcp">
                               <JSONLayout complete="false" compact="true" eventEol="true" charset="UTF-8" properties="true"/>
                           </Socket>

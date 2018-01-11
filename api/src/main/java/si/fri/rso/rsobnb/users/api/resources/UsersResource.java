@@ -31,6 +31,7 @@ public class UsersResource {
 
     @GET
     @Metered
+    @Log
     public Response getUsers() {
 
         List<User> users = userBean.getUsers(uriInfo);
@@ -40,6 +41,7 @@ public class UsersResource {
 
     @GET
     @Path("/info")
+    @Log
     public Response getInfo() {
         String response = userBean.getInfo();
 
@@ -48,6 +50,7 @@ public class UsersResource {
 
     @GET
     @Path("/filtered")
+    @Log
     public Response getUsersFiltered() {
 
         List<User> users;

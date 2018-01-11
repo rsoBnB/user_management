@@ -24,6 +24,7 @@
     <kumuluzee.version>2.4.1</kumuluzee.version>
     <kumuluzee-rest.version>1.1.0</kumuluzee-rest.version>
     <kumuluzee-discovery.version>1.1.0-SNAPSHOT</kumuluzee-discovery.version>
+    <kumuluzee-health.version>1.0.0-SNAPSHOT</kumuluzee-health.version>
 
     <postgresql.version>42.1.4</postgresql.version>
   </properties>
@@ -67,6 +68,11 @@
         <artifactId>kumuluzee-logs-log4j2</artifactId>
         <groupId>com.kumuluz.ee.logs</groupId>
         <version>${kumuluzee-logs.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.kumuluz.ee.health</groupId>
+        <artifactId>kumuluzee-health</artifactId>
+        <version>${kumuluzee-health.version}</version>
       </dependency>
       <dependency>
         <groupId>org.postgresql</groupId>
