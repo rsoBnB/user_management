@@ -26,6 +26,8 @@ spec:
             value: dbuser
           - name: KUMULUZEE_DATASOURCES0_PASSWORD
             value: postgres
+          - name: KUMULUZEE_SERVER_BASEURL
+            value: http://168.1.149.41:30626/
         livenessProbe:
           httpGet:
             path: /health

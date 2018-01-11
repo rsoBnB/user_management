@@ -2,18 +2,19 @@ package si.fri.rso.rsobnb.users.api.resources;
 
 import com.kumuluz.ee.logs.cdi.Log;
 import si.fri.rso.rsobnb.users.User;
+import si.fri.rso.rsobnb.users.services.config.RestProperties;
 import si.fri.rso.rsobnb.users.services.UsersBean;
 
 import org.eclipse.microprofile.metrics.annotation.Metered;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import javax.json.JsonObject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
+import java.util.logging.Logger;
 
 
 @RequestScoped
@@ -25,6 +26,11 @@ public class UsersResource {
 
     @Inject
     private UsersBean userBean;
+
+    private Logger log = Logger.getLogger(UsersResource.class.getName());
+
+    @Inject
+    private RestProperties restProperties;
 
     @Context
     protected UriInfo uriInfo;
@@ -90,6 +96,14 @@ public class UsersResource {
         } else {
             return Response.status(Response.Status.CONFLICT).entity(user).build();
         }
+    }
+
+    @POST
+    @Path("healthy")
+    public Response setHealth(Boolean healthy) {
+        restProperties.setHealthy(healthy);
+        log.info("Setting health to " + healthy);
+        return Response.ok().build();
     }
 
     @PUT
