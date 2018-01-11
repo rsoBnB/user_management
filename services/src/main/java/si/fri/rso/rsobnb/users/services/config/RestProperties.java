@@ -10,6 +10,16 @@ public class RestProperties {
 
     @ConfigValue(value = "external-services.realestate-service.enabled", watch = true)
     private boolean realEstateServiceEnabled;
+    private boolean isHealthy;
+
+    public boolean isHealthy() {
+        return isHealthy;
+    }
+
+    public void setHealthy(boolean isHealthy) {
+        this.isHealthy = isHealthy;
+    }
+
 
     public boolean isRealEstateServiceEnabled() {
         return realEstateServiceEnabled;
