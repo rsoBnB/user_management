@@ -57,3 +57,4 @@ rest-properties:
   external-services:
     realestate-service:
       enabled: true
+      healthy: true

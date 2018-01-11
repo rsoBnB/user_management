@@ -10,6 +10,7 @@ public class RestProperties {
 
     @ConfigValue(value = "external-services.realestate-service.enabled", watch = true)
     private boolean realEstateServiceEnabled;
+    @ConfigValue(value = "external-services.realestate-service.healthy", watch = true)
     private boolean isHealthy;
 
     public boolean isHealthy() {
