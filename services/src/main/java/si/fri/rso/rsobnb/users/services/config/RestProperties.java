@@ -9,15 +9,6 @@ import javax.enterprise.context.ApplicationScoped;
 public class RestProperties {
 
     @ConfigValue(value = "external-services.realestate-service.enabled", watch = true)
-    private boolean realEstatesServiceEnabled;
-
-    public boolean isRealEstatesServiceEnabled() {
-        return realEstatesServiceEnabled;
-    }
-
-    public void setRealEstatesServiceEnabled(boolean realEstatesServiceEnabled) {
-        this.realEstatesServiceEnabled = realEstatesServiceEnabled;
-    }
 
     private boolean healthy;
 
