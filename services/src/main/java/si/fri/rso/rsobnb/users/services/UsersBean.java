@@ -88,7 +88,7 @@ public class UsersBean {
             throw new NotFoundException();
         }
 
-        if(true){
+        if(restProperties.isRealEstateServiceEnabled()){
             List<RealEstate> realEstates = userBean.getRealEstates(userId);
             user.setRealEstates(realEstates);
         }
