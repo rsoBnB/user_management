@@ -51,3 +51,5 @@ rest-properties:
   external-services:
     realestate-service:
       enabled: true
+    supportticket-service:
+      enabled: true

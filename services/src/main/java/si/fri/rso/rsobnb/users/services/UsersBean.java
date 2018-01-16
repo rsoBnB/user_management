@@ -30,6 +30,7 @@ import org.eclipse.microprofile.faulttolerance.Fallback;
 import org.eclipse.microprofile.faulttolerance.Timeout;
 
 import si.fri.rso.rsobnb.users.RealEstate;
+import si.fri.rso.rsobnb.users.Ticket;
 import si.fri.rso.rsobnb.users.User;
 import si.fri.rso.rsobnb.users.services.config.RestProperties;
 
@@ -55,7 +56,11 @@ public class UsersBean {
 
     @Inject
     @DiscoverService("real_estates")
-    private Optional<String> baseUrl;
+    private Optional<String> baseUrlRealEstates;
+
+    @Inject
+    @DiscoverService("support_tickets")
+    private Optional<String> baseUrlTickets;
 
 
     @PostConstruct
@@ -91,6 +96,11 @@ public class UsersBean {
         if(restProperties.isRealEstateServiceEnabled()){
             List<RealEstate> realEstates = userBean.getRealEstates(userId);
             user.setRealEstates(realEstates);
+        }
+
+        if(restProperties.isSupportTicketServiceEnabled()){
+            List<Ticket> tickets = userBean.getTickets(userId);
+            user.setTickets(tickets);
         }
 
         return user;
@@ -154,15 +164,38 @@ public class UsersBean {
     @Timeout
     public List<RealEstate> getRealEstates(String userId) {
 
-        System.out.println("Base url: "+baseUrl);
+        System.out.println("Base url: "+baseUrlRealEstates);
 
-        if (baseUrl.isPresent()) {
-            System.out.println("Base url: "+baseUrl);
+        if (baseUrlRealEstates.isPresent()) {
+            System.out.println("Base url: "+baseUrlRealEstates);
 
             try {
                 return httpClient
-                        .target(baseUrl.get() + "/v1/real_estates?where=userId:EQ:" + userId)
+                        .target(baseUrlRealEstates.get() + "/v1/real_estates?where=userId:EQ:" + userId)
                         .request().get(new GenericType<List<RealEstate>>() {
+                        });
+            } catch (WebApplicationException | ProcessingException e) {
+                log.error(e);
+                System.out.println("Error: "+e);
+                throw new InternalServerErrorException(e);
+            }
+        }
+
+        return new ArrayList<>();
+    }
+
+    @CircuitBreaker(requestVolumeThreshold = 2)
+    @Fallback(fallbackMethod = "getTicketsFallback")
+    @Timeout
+    public List<Ticket> getTickets(String userId) {
+
+        System.out.println("Base url: "+baseUrlTickets);
+
+        if (baseUrlTickets.isPresent()) {
+            try {
+                return httpClient
+                        .target(baseUrlRealEstates.get() + "/v1/support_tickets?where=userId:EQ:" + userId)
+                        .request().get(new GenericType<List<Ticket>>() {
                         });
             } catch (WebApplicationException | ProcessingException e) {
                 log.error(e);
@@ -188,6 +221,22 @@ public class UsersBean {
         realEstates.add(realEstate);
 
         return realEstates;
+    }
+
+    public List<Ticket> getTicketsFallback(String userId) {
+        System.out.println("Fallback called");
+
+        List<Ticket> tickets = new ArrayList<>();
+
+        Ticket ticket = new Ticket();
+
+        ticket.setTitle("N/A");
+        ticket.setDescription("N/A");
+        ticket.setSolved(false);
+
+        tickets.add(ticket);
+
+        return tickets;
     }
 
     public String getInfo() {

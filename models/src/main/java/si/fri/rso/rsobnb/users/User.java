@@ -35,10 +35,11 @@ public class User {
     @Column(name = "date_of_birth")
     private Date dateOfBirth;
 
-
-
     @Transient
     private List<RealEstate> realEstates;
+
+    @Transient
+    private List<Ticket> tickets;
 
     public String getId() {
         return id;
@@ -86,5 +87,13 @@ public class User {
 
     public void setRealEstates(List<RealEstate> realEstates) {
         this.realEstates = realEstates;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }
