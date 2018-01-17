@@ -1,5 +1,7 @@
 package si.fri.rso.rsobnb.users;
 
+import java.util.List;
+
 public class RealEstate {
 
     private String id;
@@ -12,6 +14,8 @@ public class RealEstate {
     private Boolean parking;
     private Boolean wifi;
     private Integer rating;
+    private List<Image> images;
+    private List<Review> reviews;
 
 
     public String getId() {
@@ -88,5 +92,21 @@ public class RealEstate {
 
     public void setRating(Integer rating) {
         this.rating = rating;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

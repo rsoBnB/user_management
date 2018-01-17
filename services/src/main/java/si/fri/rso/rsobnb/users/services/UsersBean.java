@@ -167,11 +167,13 @@ public class UsersBean {
         System.out.println("Base url: "+baseUrlRealEstates);
 
         if (baseUrlRealEstates.isPresent()) {
+        //if (true) {
             System.out.println("Base url: "+baseUrlRealEstates);
 
             try {
                 return httpClient
-                        .target(baseUrlRealEstates.get() + "/v1/real_estates?where=userId:EQ:" + userId)
+                        //.target(baseUrlRealEstates.get() + "/v1/real_estates?where=userId:EQ:" + userId)
+                        .target("http://172.17.0.1:8081" + "/v1/real_estates?where=userId:EQ:" + userId)
                         .request().get(new GenericType<List<RealEstate>>() {
                         });
             } catch (WebApplicationException | ProcessingException e) {
@@ -192,9 +194,11 @@ public class UsersBean {
         System.out.println("Base url: "+baseUrlTickets);
 
         if (baseUrlTickets.isPresent()) {
+        //if (true) {
             try {
                 return httpClient
-                        .target(baseUrlRealEstates.get() + "/v1/support_tickets?where=userId:EQ:" + userId)
+                        //.target(baseUrlRealEstates.get() + "/v1/support_tickets?where=userId:EQ:" + userId)
+                        .target( "http://172.17.0.1:8087" + "/v1/support_tickets?where=userId:EQ:" + userId)
                         .request().get(new GenericType<List<Ticket>>() {
                         });
             } catch (WebApplicationException | ProcessingException e) {
