@@ -10,7 +10,7 @@ spec:
         app: users
     spec:
       containers:
-      - image: ggrex/rsobnb-users:0.2
+      - image: ggrex/rsobnb-users:0.3
         imagePullPolicy: Always
         name: users
         env:
