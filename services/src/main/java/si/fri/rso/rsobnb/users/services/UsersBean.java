@@ -197,7 +197,7 @@ public class UsersBean {
         //if (true) {
             try {
                 return httpClient
-                        .target(baseUrlRealEstates.get() + "/v1/support_tickets?where=userId:EQ:" + userId)
+                        .target(baseUrlTickets.get() + "/v1/support_tickets?where=userId:EQ:" + userId)
                         //.target( "http://172.17.0.1:8087" + "/v1/support_tickets?where=userId:EQ:" + userId)
                         .request().get(new GenericType<List<Ticket>>() {
                         });
